@@ -1,2 +1,2 @@
-print("Hai")
-print("Hai")
+h="haibro"
+print(h[-5:-1])
