@@ -1,2 +1,2 @@
-h="haibro"
-print(h[-5:-1])
+# h="haibro" g
+# print(h[-5:-1])
