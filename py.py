@@ -19,3 +19,11 @@
 # print(list)
 # list.sort
 # print(list)
+
+# tuple=(2,4,5,6,7,8,'rt',6)
+
+# print(tuple.count(6))
+# sett={7,5,6,8,9,4,3,2,1,67,88}
+# print(sett)
+
+# sett.add(10)
