@@ -40,10 +40,13 @@
 
 # print(dic[])
 
-a=10
-b=a
-print(id(a))
-print(id(b))
-a=11
-print(id(a))
-print(id(b))
+# a=10
+# b=a
+# print(id(a))
+# print(id(b))
+# a=11
+# print(id(a))
+# print(id(b))
+# range(10)
+# print(range(10))
+# print(list(range(10)))
