@@ -50,3 +50,16 @@
 # range(10)
 # print(range(10))
 # print(list(range(10)))
+# n=-(7)
+# print(n)
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn
+
+print("NumPy version:", np.__version__)
+print("Pandas version:", pd.__version__)
+print("Scikit-learn version:", sklearn.__version__)
+
+print("All libraries installed successfully!")
