@@ -29,5 +29,5 @@
 # sett.add(10)
 dic={1:'h',2:'a'}
 print(dic)
-print(dic[1])
+print(dic['h'])
 dic.get(2)
