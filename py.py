@@ -27,7 +27,15 @@
 # print(sett)
 
 # sett.add(10)
-dic={1:'h',2:'a'}
-print(dic)
-print(dic['h'])
-dic.get(2)
+# dic={1:'h',2:'a'}
+# print(dic)
+# print(dic['h'])
+# dic.get(2)
+
+dic={
+     1:'hai',
+     1:['hello','bro'],
+     2:{'a':'haibro'}
+     }
+
+print(dic[])
