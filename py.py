@@ -32,10 +32,18 @@
 # print(dic['h'])
 # dic.get(2)
 
-dic={
-     1:'hai',
-     1:['hello','bro'],
-     2:{'a':'haibro'}
-     }
+# dic={
+#      1:'hai',
+#      1:['hello','bro'],
+#      2:{'a':'haibro'}
+#      }
 
-print(dic[])
+# print(dic[])
+
+a=10
+b=a
+print(id(a))
+print(id(b))
+a=11
+print(id(a))
+print(id(b))
