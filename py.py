@@ -96,6 +96,6 @@
 # print("\nVariance Ratio:")
 # print(pca.explained_variance_ratio_)
 
-from math import sqrt 
+# from math import sqrt 
 
-print(sqrt(7))
+# print(sqrt(7))
