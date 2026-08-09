@@ -99,3 +99,6 @@
 # from math import sqrt 
 
 # print(sqrt(7))
+
+z=input("enter the number")
+print(z)
