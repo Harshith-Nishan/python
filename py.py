@@ -120,12 +120,49 @@
 # print(list)
 # list.sort
 # print(list)
-h=30
-if h>=30:
-    print("h is greater than 30")
-else if h<30:
-    print("h is less than 30")
+# h=30
+# if h>=30:
+#     print("h is greater than 30")
+# else if h<30:
+#     print("h is less than 30")
 
-def check_even_odd(num):
-    print("The number is even" if num % 2 == 0 else "The number is odd")   
-h=40
+# def check_even_odd(num):
+#     print("The number is even" if num % 2 == 0 else "The number is odd")   
+# h=40
+def calculate_total(numbers):
+    total = 0
+
+    for number in numbers:
+        total += number
+
+    return total
+
+
+def check_number(number):
+    if number > 50:
+        return "Greater than 50"
+    elif number == 50:
+        return "Exactly 50"
+    else:
+        return "Less than 50"
+
+
+def main():
+    numbers = [10, 25, 50, 75, 100]
+
+    print("Starting program")
+
+    total = calculate_total(numbers)
+    average = total / len(numbers)
+
+    print("Total:", total)
+    print("Average:", average)
+
+    for number in numbers:
+        result = check_number(number)
+        print(number, "→", result)
+
+    print("Program finished")
+
+
+main()
