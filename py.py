@@ -121,5 +121,7 @@
 # list.sort
 # print(list)
 h=30
-if h>30:
+if h>=30:
     print("h is greater than 30")
+else:
+    print("h is less than 30")
