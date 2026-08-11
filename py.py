@@ -120,6 +120,6 @@
 # print(list)
 # list.sort
 # print(list)
-
-gchgchgc
-erffrgr
+h=30
+if h>30:
+    print("h is greater than 30")
