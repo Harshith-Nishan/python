@@ -131,3 +131,6 @@ def check_even_odd(num):
     56
     76
     rfhgr
+    ufj
+    jgg
+    
