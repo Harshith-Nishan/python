@@ -123,5 +123,10 @@
 h=30
 if h>=30:
     print("h is greater than 30")
-else:
+else if h<30:
     print("h is less than 30")
+
+def check_even_odd(num):
+    print("The number is even" if num % 2 == 0 else "The number is odd")   
+    56
+    76
