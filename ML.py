@@ -59,66 +59,66 @@
 # print("\nReduced Data:")
 # print(reduced_data)
 
-import pandas as pd
+# import pandas as pd
 
-# -----------------------------------
-# ORIGINAL DATASET
-# -----------------------------------
+# # -----------------------------------
+# # ORIGINAL DATASET
+# # -----------------------------------
 
-df = pd.DataFrame({
-    "Method": ["Video", "Book", "Classroom",
-               "Video", "Book", "Classroom"],
-    "Score": [80, 70, 75, 85, 65, 78]
-})
+# df = pd.DataFrame({
+#     "Method": ["Video", "Book", "Classroom",
+#                "Video", "Book", "Classroom"],
+#     "Score": [80, 70, 75, 85, 65, 78]
+# })
 
-print("ORIGINAL DATA:")
-print(df)
-
-
-# ===================================
-# 1. ONE-HOT ENCODING
-# ===================================
-
-one_hot = pd.get_dummies(
-    df["Method"],
-    dtype=int
-)
-
-print("\n\n1. ONE-HOT ENCODING:")
-print(one_hot)
+# print("ORIGINAL DATA:")
+# print(df)
 
 
-# ===================================
-# 2. DUMMY ENCODING
-# ===================================
+# # ===================================
+# # 1. ONE-HOT ENCODING
+# # ===================================
 
-dummy = pd.get_dummies(
-    df["Method"],
-    drop_first=True,
-    dtype=int
-)
+# one_hot = pd.get_dummies(
+#     df["Method"],
+#     dtype=int
+# )
 
-print("\n\n2. DUMMY ENCODING:")
-print(dummy)
+# print("\n\n1. ONE-HOT ENCODING:")
+# print(one_hot)
 
 
-# ===================================
-# 3. EFFECT ENCODING
-# ===================================
+# # ===================================
+# # 2. DUMMY ENCODING
+# # ===================================
 
-effect = pd.DataFrame()
+# dummy = pd.get_dummies(
+#     df["Method"],
+#     drop_first=True,
+#     dtype=int
+# )
 
-effect["Video"] = df["Method"].map({
-    "Video": 1,
-    "Book": 0,
-    "Classroom": -1
-})
+# print("\n\n2. DUMMY ENCODING:")
+# print(dummy)
 
-effect["Book"] = df["Method"].map({
-    "Video": 0,
-    "Book": 1,
-    "Classroom": -1
-})
 
-print("\n\n3. EFFECT ENCODING:")
-print(effect)
+# # ===================================
+# # 3. EFFECT ENCODING
+# # ===================================
+
+# effect = pd.DataFrame()
+
+# effect["Video"] = df["Method"].map({
+#     "Video": 1,
+#     "Book": 0,
+#     "Classroom": -1
+# })
+
+# effect["Book"] = df["Method"].map({
+#     "Video": 0,
+#     "Book": 1,
+#     "Classroom": -1
+# })
+
+# print("\n\n3. EFFECT ENCODING:")
+# print(effect)
