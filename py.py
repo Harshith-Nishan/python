@@ -157,6 +157,7 @@ def main():
 
     print("Total:", total)
     print("Average:", average)
+    import math as pdd
 
     for number in numbers:
         result = check_number(number)
