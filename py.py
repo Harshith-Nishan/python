@@ -130,3 +130,4 @@ def check_even_odd(num):
     print("The number is even" if num % 2 == 0 else "The number is odd")   
     56
     76
+    rfhgr
