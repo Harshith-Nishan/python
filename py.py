@@ -168,5 +168,19 @@
 
 # main()
 for i in range(20, 1,-6):
-    print(i)
+    pass
 
+# dit={1: 'hello', 2: 'world'}
+
+# for key in dit.keys():
+#     print(key, dit[key])
+
+
+# student = {
+#     "name": "Harshith",
+#     "age": 25,
+#     "course": "ML"
+# }
+
+# for key in student.keys(),values(),items():
+#     print(key, student[key])
