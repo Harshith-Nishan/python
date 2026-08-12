@@ -212,18 +212,18 @@
 # for i in range(x):
 #     y=int(input("enter the numbers"))
 #     z.append(y)
-from array import array
+# from array import array
 
-z = array("i", [])
+# z = array("i", [])
 
-x = int(input("enter size"))
+# x = int(input("enter size"))
 
-for i in range(x):
-    y = int(input("enter the numbers"))
-    z.append(y)
+# for i in range(x):
+#     y = int(input("enter the numbers"))
+#     z.append(y)
 
-print(z)
-print
-print
-print.
+# print(z)
+# print
+# print
+# print.
 
