@@ -129,41 +129,43 @@
 # def check_even_odd(num):
 #     print("The number is even" if num % 2 == 0 else "The number is odd")   
 # h=40
-def calculate_total(numbers):
-    total = 0
+# def calculate_total(numbers):
+#     total = 0
 
-    for number in numbers:
-        total += number
+#     for number in numbers:
+#         total += number
 
-    return total
-
-
-def check_number(number):
-    if number > 50:
-        return "Greater than 50"
-    elif number == 50:
-        return "Exactly 50"
-    else:
-        return "Less than 50"
+#     return total
 
 
-def main():
-    numbers = [10, 25, 50, 75, 100]
-
-    print("Starting program")
-
-    total = calculate_total(numbers)
-    average = total / len(numbers)
-
-    print("Total:", total)
-    print("Average:", average)
-    import math as pdd
-
-    for number in numbers:
-        result = check_number(number)
-        print(number, "→", result)
-
-    print("Program finished")
+# def check_number(number):
+#     if number > 50:
+#         return "Greater than 50"
+#     elif number == 50:
+#         return "Exactly 50"
+#     else:
+#         return "Less than 50"
 
 
-main()
+# def main():
+#     numbers = [10, 25, 50, 75, 100]
+
+#     print("Starting program")
+
+#     total = calculate_total(numbers)
+#     average = total / len(numbers)
+
+#     print("Total:", total)
+#     print("Average:", average)
+#     import math as pdd
+
+#     for number in numbers:
+#         result = check_number(number)
+#         print(number, "→", result)
+
+#     print("Program finished")
+
+
+# main()
+for i in range(1, 11):
+    print(i)
