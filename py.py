@@ -242,3 +242,8 @@
 # x=40
 # print(id(x))
 # print(id(a))
+from numpy import *
+arr=array([1,2,3,4,5])
+arr2=arr.copy()
+z=arr2*5
+print(z)
