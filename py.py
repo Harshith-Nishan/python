@@ -226,11 +226,19 @@
 # print
 # print
 # print.
-from numpy import *
+# from numpy import *
 
-# arr=array([1,2,3,4,5,'g'])
+# # arr=array([1,2,3,4,5,'g'])
+# # print(arr)
+# arr=logspace(1,10,2)
 # print(arr)
-arr=logspace(1,10,2)
-print(arr)
 
 
+# x=30
+# a=x
+# print(x,a)
+# print(id(x))
+# print(id(a))
+# x=40
+# print(id(x))
+# print(id(a))
