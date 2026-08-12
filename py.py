@@ -223,4 +223,7 @@ for i in range(x):
     z.append(y)
 
 print(z)
+print
+print
+print.
 
