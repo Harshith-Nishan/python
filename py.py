@@ -167,7 +167,6 @@
 
 
 # main()
-for i in range(1, 11):
+for i in range(20, 1,-6):
     print(i)
 
-vcb
