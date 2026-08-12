@@ -228,7 +228,9 @@
 # print.
 from numpy import *
 
-arr=array([1,2,3,4,5,'g'])
+# arr=array([1,2,3,4,5,'g'])
+# print(arr)
+arr=logspace(1,10,2)
 print(arr)
 
 
