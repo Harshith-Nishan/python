@@ -193,9 +193,14 @@
 # for x>1:
 #     print(x)
 
-for i in range(1, 11):
-    i=1
-    if i > 5:
-        print(i)
-else:
-    print("Loop completed")
+# for i in range(1, 11):
+#     i=1
+#     if i > 5:
+#         print(i)
+# else:
+#     print("Loop completed")from array
+from array import *
+arr=array('i',[2,3,4,5,6])
+for i in arr:
+    print(i)
+    
