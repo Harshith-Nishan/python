@@ -167,8 +167,8 @@
 
 
 # main()
-for i in range(20, 1,-6):
-    pass
+# for i in range(20, 1,-6):
+#     pass
 # dit={1: 'hello', 2: 'world'}
 
 # for key in dit.keys():
@@ -183,3 +183,19 @@ for i in range(20, 1,-6):
 
 # for key in student.keys(),values(),items():
 #     print(key, student[key])
+
+# for i in range(4):
+#     print("#")
+#     for j in range(4):
+#         print("#", end="")
+#     print()
+# x=10
+# for x>1:
+#     print(x)
+
+for i in range(1, 11):
+    i=1
+    if i > 5:
+        print(i)
+else:
+    print("Loop completed")
