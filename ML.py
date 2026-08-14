@@ -146,3 +146,59 @@ from sklearn.linear_model import LinearRegression
 # prediction = model.predict([[9]])
 
 # print("Predicted score:", prediction[0])
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# X = input features
+# Column 1 = Hours studied
+# Column 2 = Sleep hours
+
+X = np.array([
+    [1, 6],
+    [2, 7],
+    [3, 7],
+    [4, 8],
+    [5, 8]
+])
+
+# y = output
+y = np.array([35, 42, 50, 58, 65])
+
+# Create the model
+model = LinearRegression()
+
+# Train the model
+model.fit(X, y)
+
+# Get coefficients
+print("Coefficients:", model.coef_)
+print("Intercept:", model.intercept_)
+
+# Predict the training data
+y_pred = model.predict(X)
+
+print("\nActual:", y)
+print("Predicted:", y_pred)
+
+# Calculate errors
+mae = mean_absolute_error(y, y_pred)
+mse = mean_squared_error(y, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y, y_pred)
+
+print("\nMAE:", mae)
+print("MSE:", mse)
+print("RMSE:", rmse)
+print("R2 Score:", r2)
+
+# Predict a new student
+# Hours = 6
+# Sleep = 7
+
+new_student = [[6, 7]]
+
+prediction = model.predict(new_student)
+
+print("\nPredicted score:", prediction[0])
