@@ -143,6 +143,6 @@ print("Slope:", model.coef_[0])
 print("Intercept:", model.intercept_)
 
 # Predict score for a student who studied 6 hours
-prediction = model.predict([[6]])
+prediction = model.predict([[9]])
 
 print("Predicted score:", prediction[0])
