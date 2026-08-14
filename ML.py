@@ -122,12 +122,14 @@
 
 # print("\n\n3. EFFECT ENCODING:")
 # print(effect)
-import numpy as np
-from sklearn.linear_model import LinearRegression
 
-# Training data
-# X = Hours studied
-# y = Score
+
+# import numpy as np
+# from sklearn.linear_model import LinearRegression
+
+# # Training data
+# # X = Hours studied
+# # y = Score
 
 # X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
 # y = np.array([35, 42, 50, 58, 65])
@@ -143,7 +145,7 @@ from sklearn.linear_model import LinearRegression
 # print("Intercept:", model.intercept_)
 
 # # Predict score for a student who studied 6 hours
-# prediction = model.predict([[9]])
+# prediction = model.predict([[2]])
 
 # print("Predicted score:", prediction[0])
 
