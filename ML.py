@@ -129,20 +129,20 @@ from sklearn.linear_model import LinearRegression
 # X = Hours studied
 # y = Score
 
-X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
-y = np.array([35, 42, 50, 58, 65])
+# X = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
+# y = np.array([35, 42, 50, 58, 65])
 
-# Create the model
-model = LinearRegression()
+# # Create the model
+# model = LinearRegression()
 
-# Train the model
-model.fit(X, y)
+# # Train the model
+# model.fit(X, y)
 
-# Get slope and intercept
-print("Slope:", model.coef_[0])
-print("Intercept:", model.intercept_)
+# # Get slope and intercept
+# print("Slope:", model.coef_[0])
+# print("Intercept:", model.intercept_)
 
-# Predict score for a student who studied 6 hours
-prediction = model.predict([[9]])
+# # Predict score for a student who studied 6 hours
+# prediction = model.predict([[9]])
 
-print("Predicted score:", prediction[0])
+# print("Predicted score:", prediction[0])
