@@ -384,3 +384,166 @@
 
 # print("\nLog Loss:", loss)
 
+import numpy as np
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    confusion_matrix,
+    log_loss
+)
+
+
+# ==========================================
+# 1. DATA
+# ==========================================
+
+# Hours studied
+X = np.array([
+    [1],
+    [2],
+    [3],
+    [4],
+    [5],
+    [6],
+    [7],
+    [8],
+    [9],
+    [10]
+])
+
+# Actual result
+# 0 = Fail
+# 1 = Pass
+
+y = np.array([
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,   # unusual
+    1,
+    1,
+    1
+])
+
+
+# ==========================================
+# 2. CREATE LOGISTIC REGRESSION MODEL
+# ==========================================
+
+model = LogisticRegression()
+
+
+# ==========================================
+# 3. TRAIN THE MODEL
+# ==========================================
+
+model.fit(X, y)
+
+
+# ==========================================
+# 4. GET COEFFICIENT AND INTERCEPT
+# ==========================================
+
+b1 = model.coef_[0][0]
+b0 = model.intercept_[0]
+
+print("Coefficient:", b1)
+print("Intercept:", b0)
+
+
+# ==========================================
+# 5. CALCULATE z
+# ==========================================
+
+z = b0 + b1 * X.flatten()
+
+print("\nz values:")
+print(z)
+
+
+# ==========================================
+# 6. SIGMOID
+# ==========================================
+
+probability = 1 / (1 + np.exp(-z))
+
+print("\nProbability of Pass:")
+print(probability)
+
+
+# ==========================================
+# 7. THRESHOLD
+# ==========================================
+
+threshold = 0.5
+
+y_pred = (probability >= threshold).astype(int)
+
+print("\nActual:")
+print(y)
+
+print("\nPredicted:")
+print(y_pred)
+
+
+# ==========================================
+# 8. CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y, y_pred)
+
+print("\nConfusion Matrix:")
+print(cm)
+
+
+# ==========================================
+# 9. ACCURACY
+# ==========================================
+
+accuracy = accuracy_score(y, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+
+# ==========================================
+# 10. PRECISION
+# ==========================================
+
+precision = precision_score(y, y_pred)
+
+print("Precision:", precision)
+
+
+# ==========================================
+# 11. RECALL
+# ==========================================
+
+recall = recall_score(y, y_pred)
+
+print("Recall:", recall)
+
+
+# ==========================================
+# 12. F1 SCORE
+# ==========================================
+
+f1 = f1_score(y, y_pred)
+
+print("F1 Score:", f1)
+
+
+# ==========================================
+# 13. LOG LOSS
+# ==========================================
+
+loss = log_loss(y, probability)
+
+print("Log Loss:", loss)
