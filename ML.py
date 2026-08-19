@@ -206,36 +206,4 @@
 
 # print("\nPredicted score:", prediction[0])
 
-###############################################################
-import numpy as np
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-
-X = np.array([
-    [1, 6],
-    [2, 6],
-    [3, 7],
-    [4, 7],
-    [5, 8],
-    [6, 8],
-    [7, 9],
-    [8, 9],
-    [9, 10],
-    [10, 10]
-])
-
-y = np.array([34, 42, 50, 58, 66, 74, 82, 90, 98, 106])
-
-model = LinearRegression()
-
-model.fit(X, y)
-
-y_pred = model.predict(X)
-
-print("Coefficients:", model.coef_)
-print("Intercept:", model.intercept_)
-
-print("MAE:", mean_absolute_error(y, y_pred))
-print("MSE:", mean_squared_error(y, y_pred))
-print("RMSE:", np.sqrt(mean_squared_error(y, y_pred)))
-print("R2:", r2_score(y, y_pred))
+# 
