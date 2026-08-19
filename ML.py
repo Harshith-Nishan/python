@@ -292,3 +292,95 @@
 # accuracy = accuracy_score(y, prediction)
 
 # print("Accuracy:", accuracy)
+
+
+# import numpy as np
+# from sklearn.linear_model import LogisticRegression
+# from sklearn.metrics import (
+#     accuracy_score,
+#     precision_score,
+#     recall_score,
+#     f1_score,
+#     confusion_matrix,
+#     log_loss
+# )
+
+# # Hours studied
+# X = np.array([
+#     [1],
+#     [2],
+#     [3],
+#     [4],
+#     [5],
+#     [6],
+#     [7],
+#     [8],
+#     [9],
+#     [10]
+# ])
+
+# # Actual result
+# # 0 = Fail
+# # 1 = Pass
+# y = np.array([
+#     0,
+#     0,
+#     1,   # unusual: passed with only 3 hours
+#     0,   # unusual: failed with 4 hours
+#     1,
+#     1,
+#     0,   # unusual: failed with 7 hours
+#     1,
+#     1,
+#     1
+# ])
+
+# # Create model
+# model = LogisticRegression()
+
+# # Train
+# model.fit(X, y)
+
+# # Probability of Pass
+# probability = model.predict_proba(X)[:, 1]
+
+# # Final prediction
+# y_pred = model.predict(X)
+
+# print("Probability:")
+# print(probability)
+
+# print("\nActual:")
+# print(y)
+
+# print("\nPredicted:")
+# print(y_pred)
+
+# # Accuracy
+# accuracy = accuracy_score(y, y_pred)
+
+# # Precision
+# precision = precision_score(y, y_pred)
+
+# # Recall
+# recall = recall_score(y, y_pred)
+
+# # F1
+# f1 = f1_score(y, y_pred)
+
+# # Confusion Matrix
+# cm = confusion_matrix(y, y_pred)
+
+# # Log Loss
+# loss = log_loss(y, probability)
+
+# print("\nAccuracy:", accuracy)
+# print("Precision:", precision)
+# print("Recall:", recall)
+# print("F1 Score:", f1)
+
+# print("\nConfusion Matrix:")
+# print(cm)
+
+# print("\nLog Loss:", loss)
+
