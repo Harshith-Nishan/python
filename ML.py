@@ -207,3 +207,88 @@
 # print("\nPredicted score:", prediction[0])
 
 # 
+import numpy as np
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import log_loss, accuracy_score
+
+# -----------------------------
+# TRAINING DATA
+# -----------------------------
+
+X = np.array([[1], [2], [3], [4], [5], [6]])
+
+y = np.array([0, 0, 0, 1, 1, 1])
+
+
+# -----------------------------
+# CREATE MODEL
+# -----------------------------
+
+model = LogisticRegression()
+
+
+# -----------------------------
+# TRAIN MODEL
+# -----------------------------
+
+model.fit(X, y)
+
+
+# -----------------------------
+# GET COEFFICIENT AND INTERCEPT
+# -----------------------------
+
+b1 = model.coef_[0][0]
+b0 = model.intercept_[0]
+
+print("Coefficient:", b1)
+print("Intercept:", b0)
+
+
+# -----------------------------
+# CALCULATE z
+# -----------------------------
+
+z = b0 + b1 * X.flatten()
+
+print("\nz values:")
+print(z)
+
+
+# -----------------------------
+# SIGMOID
+# -----------------------------
+
+probability = 1 / (1 + np.exp(-z))
+
+print("\nProbabilities:")
+print(probability)
+
+
+# -----------------------------
+# PREDICTION
+# -----------------------------
+
+prediction = (probability >= 0.5).astype(int)
+
+print("\nPredictions:")
+print(prediction)
+
+
+# -----------------------------
+# LOG LOSS
+# -----------------------------
+
+loss = log_loss(y, probability)
+
+print("\nLog Loss:", loss)
+
+
+# -----------------------------
+# ACCURACY
+# -----------------------------
+
+accuracy = accuracy_score(y, prediction)
+
+print("Accuracy:", accuracy)
