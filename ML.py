@@ -1024,7 +1024,7 @@ print("Coefficients:", model.coef_)
 
 
 # -----------------------------
-# PREDICTION
+# PREDICTION#
 # -----------------------------
 
 y_pred = model.predict(X_poly)
