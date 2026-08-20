@@ -1589,3 +1589,101 @@
 # path = kagglehub.dataset_download("yasserh/housing-prices-dataset")
 
 # print("Path to dataset files:", path)
+
+#####################################################################
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+
+# ==========================================
+# 1. LOAD DATASET
+# ==========================================
+
+data = pd.read_csv(r"C:\Users\nn880\Downloads\Housing.csv")
+
+
+# ==========================================
+# 2. DISPLAY DATA
+# ==========================================
+
+print(data.head())
+
+print("\nColumns:")
+print(data.columns)
+
+
+# ==========================================
+# 3. INPUT AND OUTPUT
+# ==========================================
+
+# Price is what we want to predict
+y = data["price"]
+
+# Everything except price is input
+X = data.drop("price", axis=1)
+
+
+# ==========================================
+# 4. CONVERT CATEGORICAL DATA
+# ==========================================
+
+X = pd.get_dummies(X, drop_first=True)
+
+
+# ==========================================
+# 5. TRAIN / TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# ==========================================
+# 6. CREATE MODEL
+# ==========================================
+
+model = LinearRegression()
+
+
+# ==========================================
+# 7. TRAIN MODEL
+# ==========================================
+
+model.fit(X_train, y_train)
+
+
+# ==========================================
+# 8. PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# 9. DISPLAY ACTUAL AND PREDICTED
+# ==========================================
+
+print("\nActual Prices:")
+print(y_test.values)
+
+print("\nPredicted Prices:")
+print(y_pred)
+
+
+# ==========================================
+# 10. R2 SCORE
+# ==========================================
+
+r2 = r2_score(y_test, y_pred)
+
+print("\nR2 Score:", r2)
+
+print("R2 Percentage:", r2 * 100, "%")
