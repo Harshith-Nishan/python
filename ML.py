@@ -1831,3 +1831,105 @@
 # print("\nR2 Score:", r2)
 
 # print("R2 Percentage:", r2 * 100, "%")
+
+import pandas as pd
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+
+# ==========================================
+# 1. LOAD DATASET
+# ==========================================
+
+data = pd.read_csv(r"C:\Users\nn880\Downloads\Housing.csv")
+
+
+# ==========================================
+# 2. INPUT AND OUTPUT
+# ==========================================
+
+# Output
+y = data["price"]
+
+# Inputs
+X = data.drop("price", axis=1)
+
+
+# ==========================================
+# 3. CONVERT CATEGORICAL DATA
+# ==========================================
+
+X = pd.get_dummies(X, drop_first=True)
+
+
+# ==========================================
+# 4. TRAIN / TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# ==========================================
+# 5. POLYNOMIAL FEATURES
+# ==========================================
+
+poly = PolynomialFeatures(
+    degree=2,
+    include_bias=False
+)
+
+X_train_poly = poly.fit_transform(X_train)
+
+X_test_poly = poly.transform(X_test)
+
+
+# ==========================================
+# 6. CREATE MODEL
+# ==========================================
+
+model = LinearRegression()
+
+
+# ==========================================
+# 7. TRAIN
+# ==========================================
+
+model.fit(X_train_poly, y_train)
+
+
+# ==========================================
+# 8. PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test_poly)
+
+
+# ==========================================
+# 9. R²
+# ==========================================
+
+r2 = r2_score(y_test, y_pred)
+
+print("R2 Score:", r2)
+
+print("R2 Percentage:", r2 * 100, "%")
+
+
+# ==========================================
+# 10. ACTUAL VS PREDICTED
+# ==========================================
+
+print("\nActual Prices:")
+print(y_test.values)
+
+print("\nPredicted Prices:")
+print(y_pred)
