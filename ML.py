@@ -792,108 +792,242 @@
 # print("Log Loss:", final_loss)
 
 ###############################################
+# import numpy as np
+
+# from sklearn.linear_model import LogisticRegression
+
+# from sklearn.metrics import (
+#     accuracy_score,
+#     precision_score,
+#     recall_score,
+#     f1_score,
+#     confusion_matrix,
+#     log_loss
+# )
+
+
+# # ==========================================
+# # 1. DATA
+# # ==========================================
+
+# # Hours studied
+# X = np.array([
+#     [1],
+#     [2],
+#     [3],
+#     [4],
+#     [5],
+#     [6],
+#     [7],
+#     [8],
+#     [9],
+#     [10]
+# ])
+
+# # Actual result
+# # 0 = Fail
+# # 1 = Pass
+
+# y = np.array([
+#     0,
+#     0,
+#     0,
+#     1,
+#     1,
+#     1,
+#     0,   # unusual
+#     1,
+#     1,
+#     1
+# ])
+
+
+# # ==========================================
+# # 2. CREATE LOGISTIC REGRESSION MODEL
+# # ==========================================
+
+# model = LogisticRegression()
+
+
+# # ==========================================
+# # 3. TRAIN THE MODEL
+# # ==========================================
+
+# model.fit(X, y)
+
+
+# # ==========================================
+# # 4. GET COEFFICIENT AND INTERCEPT
+# # ==========================================
+
+# b1 = model.coef_[0][0]
+# b0 = model.intercept_[0]
+
+# print("Coefficient:", b1)
+# print("Intercept:", b0)
+
+
+# # ==========================================
+# # 5. CALCULATE z
+# # ==========================================
+
+# z = b0 + b1 * X.flatten()
+
+# print("\nz values:")
+# print(z)
+
+
+# # ==========================================
+# # 6. SIGMOID
+# # ==========================================
+
+# probability = 1 / (1 + np.exp(-z))
+
+# print("\nProbability of Pass:")
+# print(probability)
+
+
+# # ==========================================
+# # 7. THRESHOLD
+# # ==========================================
+
+# threshold = 0.6
+
+# y_pred = (probability >= threshold).astype(int)
+
+# print("\nActual:")
+# print(y)
+
+# print("\nPredicted:")
+# print(y_pred)
+
+
+# # ==========================================
+# # 8. CONFUSION MATRIX
+# # ==========================================
+
+# cm = confusion_matrix(y, y_pred)
+
+# print("\nConfusion Matrix:")
+# print(cm)
+
+
+# # ==========================================
+# # 9. ACCURACY
+# # ==========================================
+
+# accuracy = accuracy_score(y, y_pred)
+
+# print("\nAccuracy:", accuracy)
+
+
+# # ==========================================
+# # 10. PRECISION
+# # ==========================================
+
+# precision = precision_score(y, y_pred)
+
+# print("Precision:", precision)
+
+
+# # ==========================================
+# # 11. RECALL
+# # ==========================================
+
+# recall = recall_score(y, y_pred)
+
+# print("Recall:", recall)
+
+
+# # ==========================================
+# # 12. F1 SCORE
+# # ==========================================
+
+# f1 = f1_score(y, y_pred)
+
+# print("F1 Score:", f1)
+
+
+# # ==========================================
+# # 13. LOG LOSS
+# # ==========================================
+
+# loss = log_loss(y, probability)
+
+# print("Log Loss:", loss)
+
+#####################################################
 import numpy as np
 
-from sklearn.linear_model import LogisticRegression
-
-from sklearn.metrics import (
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-    confusion_matrix,
-    log_loss
-)
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
-# ==========================================
-# 1. DATA
-# ==========================================
+# -----------------------------
+# DATA
+# -----------------------------
 
-# Hours studied
 X = np.array([
     [1],
     [2],
     [3],
     [4],
-    [5],
-    [6],
-    [7],
-    [8],
-    [9],
-    [10]
+    [5]
 ])
-
-# Actual result
-# 0 = Fail
-# 1 = Pass
 
 y = np.array([
-    0,
-    0,
-    0,
-    1,
-    1,
-    1,
-    0,   # unusual
-    1,
-    1,
-    1
+    13,
+    18,
+    25,
+    34,
+    45
 ])
 
 
-# ==========================================
-# 2. CREATE LOGISTIC REGRESSION MODEL
-# ==========================================
+# -----------------------------
+# CREATE POLYNOMIAL FEATURES
+# -----------------------------
 
-model = LogisticRegression()
+poly = PolynomialFeatures(degree=2)
 
+X_poly = poly.fit_transform(X)
 
-# ==========================================
-# 3. TRAIN THE MODEL
-# ==========================================
+print("Original X:")
+print(X)
 
-model.fit(X, y)
-
-
-# ==========================================
-# 4. GET COEFFICIENT AND INTERCEPT
-# ==========================================
-
-b1 = model.coef_[0][0]
-b0 = model.intercept_[0]
-
-print("Coefficient:", b1)
-print("Intercept:", b0)
+print("\nPolynomial X:")
+print(X_poly)
 
 
-# ==========================================
-# 5. CALCULATE z
-# ==========================================
+# -----------------------------
+# CREATE LINEAR REGRESSION
+# -----------------------------
 
-z = b0 + b1 * X.flatten()
-
-print("\nz values:")
-print(z)
+model = LinearRegression()
 
 
-# ==========================================
-# 6. SIGMOID
-# ==========================================
+# -----------------------------
+# TRAIN
+# -----------------------------
 
-probability = 1 / (1 + np.exp(-z))
-
-print("\nProbability of Pass:")
-print(probability)
+model.fit(X_poly, y)
 
 
-# ==========================================
-# 7. THRESHOLD
-# ==========================================
+# -----------------------------
+# GET COEFFICIENTS
+# -----------------------------
 
-threshold = 0.6
+print("\nIntercept:", model.intercept_)
 
-y_pred = (probability >= threshold).astype(int)
+print("Coefficients:", model.coef_)
+
+
+# -----------------------------
+# PREDICTION
+# -----------------------------
+
+y_pred = model.predict(X_poly)
 
 print("\nActual:")
 print(y)
@@ -902,56 +1036,23 @@ print("\nPredicted:")
 print(y_pred)
 
 
-# ==========================================
-# 8. CONFUSION MATRIX
-# ==========================================
+# -----------------------------
+# ERROR
+# -----------------------------
 
-cm = confusion_matrix(y, y_pred)
+mae = mean_absolute_error(y, y_pred)
 
-print("\nConfusion Matrix:")
-print(cm)
+mse = mean_squared_error(y, y_pred)
 
+rmse = np.sqrt(mse)
 
-# ==========================================
-# 9. ACCURACY
-# ==========================================
-
-accuracy = accuracy_score(y, y_pred)
-
-print("\nAccuracy:", accuracy)
+r2 = r2_score(y, y_pred)
 
 
-# ==========================================
-# 10. PRECISION
-# ==========================================
+print("\nMAE:", mae)
 
-precision = precision_score(y, y_pred)
+print("MSE:", mse)
 
-print("Precision:", precision)
+print("RMSE:", rmse)
 
-
-# ==========================================
-# 11. RECALL
-# ==========================================
-
-recall = recall_score(y, y_pred)
-
-print("Recall:", recall)
-
-
-# ==========================================
-# 12. F1 SCORE
-# ==========================================
-
-f1 = f1_score(y, y_pred)
-
-print("F1 Score:", f1)
-
-
-# ==========================================
-# 13. LOG LOSS
-# ==========================================
-
-loss = log_loss(y, probability)
-
-print("Log Loss:", loss)
+print("R2:", r2)
