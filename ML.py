@@ -1056,3 +1056,194 @@
 # print("RMSE:", rmse)
 
 # print("R2:", r2)
+
+#########################################################################
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    confusion_matrix,
+    log_loss
+)
+
+
+# ==========================================
+# 1. DATA
+# ==========================================
+
+# Age and Salary
+X = np.array([
+    [22, 25000],
+    [25, 30000],
+    [28, 35000],
+    [30, 40000],
+    [32, 45000],
+    [35, 50000],
+    [38, 55000],
+    [40, 60000],
+    [42, 65000],
+    [45, 70000],
+    [23, 28000],
+    [27, 32000],
+    [31, 42000],
+    [36, 48000],
+    [41, 58000]
+])
+
+# 0 = Did not buy
+# 1 = Bought
+y = np.array([
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    1,
+    1
+])
+
+
+# ==========================================
+# 2. SPLIT DATA
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+
+
+# ==========================================
+# 3. CREATE MODEL
+# ==========================================
+
+model = LogisticRegression()
+
+
+# ==========================================
+# 4. TRAIN
+# ==========================================
+
+model.fit(X_train, y_train)
+
+
+# ==========================================
+# 5. COEFFICIENTS
+# ==========================================
+
+print("Intercept:")
+print(model.intercept_)
+
+print("\nCoefficients:")
+print(model.coef_)
+
+
+# ==========================================
+# 6. PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# 7. PROBABILITY
+# ==========================================
+
+y_probability = model.predict_proba(X_test)[:, 1]
+
+
+print("\nActual:")
+print(y_test)
+
+print("\nPredicted:")
+print(y_pred)
+
+print("\nProbability of buying:")
+print(y_probability)
+
+
+# ==========================================
+# 8. CONFUSION MATRIX
+# ==========================================
+
+cm = confusion_matrix(y_test, y_pred)
+
+print("\nConfusion Matrix:")
+print(cm)
+
+
+# ==========================================
+# 9. ACCURACY
+# ==========================================
+
+accuracy = accuracy_score(y_test, y_pred)
+
+print("\nAccuracy:", accuracy)
+
+
+# ==========================================
+# 10. PRECISION
+# ==========================================
+
+precision = precision_score(
+    y_test,
+    y_pred,
+    zero_division=0
+)
+
+print("Precision:", precision)
+
+
+# ==========================================
+# 11. RECALL
+# ==========================================
+
+recall = recall_score(
+    y_test,
+    y_pred,
+    zero_division=0
+)
+
+print("Recall:", recall)
+
+
+# ==========================================
+# 12. F1 SCORE
+# ==========================================
+
+f1 = f1_score(
+    y_test,
+    y_pred,
+    zero_division=0
+)
+
+print("F1 Score:", f1)
+
+
+# ==========================================
+# 13. LOG LOSS
+# ==========================================
+
+loss = log_loss(
+    y_test,
+    y_probability
+)
+
+print("Log Loss:", loss)
