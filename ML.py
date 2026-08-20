@@ -1565,7 +1565,7 @@ print(r2)
 # Age = 3 years
 
 new_house = np.array([
-    [2300, 4, 3]
+    [3500, 5, 1]
 ])
 
 
