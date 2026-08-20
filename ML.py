@@ -1407,173 +1407,185 @@
 # print(new_prediction)
 
 ######################################################################
-import numpy as np
+# import numpy as np
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
 
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    r2_score
-)
-
-
-# ==========================================
-# 1. DATA
-# ==========================================
-
-# Features:
-# X1 = House size (sq ft)
-# X2 = Number of bedrooms
-# X3 = House age (years)
-
-X = np.array([
-    [1000, 2, 10],
-    [1200, 2, 8],
-    [1500, 3, 6],
-    [1800, 3, 5],
-    [2000, 4, 4],
-    [2200, 4, 3],
-    [2500, 4, 2],
-    [2800, 5, 2],
-    [3000, 5, 1],
-    [3500, 5, 1]
-])
+# from sklearn.metrics import (
+#     mean_absolute_error,
+#     mean_squared_error,
+#     r2_score
+# )
 
 
-# Target:
-# House price in lakhs
+# # ==========================================
+# # 1. DATA
+# # ==========================================
 
-y = np.array([
-    50,
-    58,
-    70,
-    82,
-    92,
-    102,
-    115,
-    130,
-    140,
-    160
-])
+# # Features:
+# # X1 = House size (sq ft)
+# # X2 = Number of bedrooms
+# # X3 = House age (years)
 
-
-# ==========================================
-# 2. SPLIT DATA
-# ==========================================
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42
-)
+# X = np.array([
+#     [1000, 2, 10],
+#     [1200, 2, 8],
+#     [1500, 3, 6],
+#     [1800, 3, 5],
+#     [2000, 4, 4],
+#     [2200, 4, 3],
+#     [2500, 4, 2],
+#     [2800, 5, 2],
+#     [3000, 5, 1],
+#     [3500, 5, 1]
+# ])
 
 
-# ==========================================
-# 3. CREATE MODEL
-# ==========================================
+# # Target:
+# # House price in lakhs
 
-model = LinearRegression()
-
-
-# ==========================================
-# 4. TRAIN MODEL
-# ==========================================
-
-model.fit(X_train, y_train)
-
-
-# ==========================================
-# 5. GET INTERCEPT
-# ==========================================
-
-print("Intercept (b0):")
-print(model.intercept_)
+# y = np.array([
+#     50,
+#     58,
+#     70,
+#     82,
+#     92,
+#     102,
+#     115,
+#     130,
+#     140,
+#     160
+# ])
 
 
-# ==========================================
-# 6. GET COEFFICIENTS
-# ==========================================
+# # ==========================================
+# # 2. SPLIT DATA
+# # ==========================================
 
-print("\nCoefficients:")
-print(model.coef_)
-
-
-# ==========================================
-# 7. PREDICT TEST DATA
-# ==========================================
-
-y_pred = model.predict(X_test)
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X,
+#     y,
+#     test_size=0.2,
+#     random_state=42
+# )
 
 
-print("\nActual prices:")
-print(y_test)
+# # ==========================================
+# # 3. CREATE MODEL
+# # ==========================================
 
-print("\nPredicted prices:")
-print(y_pred)
-
-
-# ==========================================
-# 8. MAE
-# ==========================================
-
-mae = mean_absolute_error(y_test, y_pred)
-
-print("\nMAE:")
-print(mae)
+# model = LinearRegression()
 
 
-# ==========================================
-# 9. MSE
-# ==========================================
+# # ==========================================
+# # 4. TRAIN MODEL
+# # ==========================================
 
-mse = mean_squared_error(y_test, y_pred)
-
-print("\nMSE:")
-print(mse)
+# model.fit(X_train, y_train)
 
 
-# ==========================================
-# 10. RMSE
-# ==========================================
+# # ==========================================
+# # 5. GET INTERCEPT
+# # ==========================================
 
-rmse = np.sqrt(mse)
-
-print("\nRMSE:")
-print(rmse)
+# print("Intercept (b0):")
+# print(model.intercept_)
 
 
-# ==========================================
-# 11. R²
-# ==========================================
+# # ==========================================
+# # 6. GET COEFFICIENTS
+# # ==========================================
 
-r2 = r2_score(y_test, y_pred)
-
-print("\nR²:")
-print(r2)
+# print("\nCoefficients:")
+# print(model.coef_)
 
 
-# ==========================================
-# 12. PREDICT A NEW HOUSE
-# ==========================================
+# # ==========================================
+# # 7. PREDICT TEST DATA
+# # ==========================================
 
-# New house:
-# Size = 2300 sq ft
-# Bedrooms = 4
-# Age = 3 years
-
-new_house = np.array([
-    [3500, 5, 1]
-])
+# y_pred = model.predict(X_test)
 
 
-new_prediction = model.predict(new_house)
+# print("\nActual prices:")
+# print(y_test)
+
+# print("\nPredicted prices:")
+# print(y_pred)
 
 
-print("\nNew house:")
-print(new_house)
+# # ==========================================
+# # 8. MAE
+# # ==========================================
 
-print("\nPredicted price:")
-print(new_prediction)
+# mae = mean_absolute_error(y_test, y_pred)
+
+# print("\nMAE:")
+# print(mae)
+
+
+# # ==========================================
+# # 9. MSE
+# # ==========================================
+
+# mse = mean_squared_error(y_test, y_pred)
+
+# print("\nMSE:")
+# print(mse)
+
+
+# # ==========================================
+# # 10. RMSE
+# # ==========================================
+
+# rmse = np.sqrt(mse)
+
+# print("\nRMSE:")
+# print(rmse)
+
+
+# # ==========================================
+# # 11. R²
+# # ==========================================
+
+# r2 = r2_score(y_test, y_pred)
+
+# print("\nR²:")
+# print(r2)
+
+
+# # ==========================================
+# # 12. PREDICT A NEW HOUSE
+# # ==========================================
+
+# # New house:
+# # Size = 2300 sq ft
+# # Bedrooms = 4
+# # Age = 3 years
+
+# new_house = np.array([
+#     [3500, 5, 1]
+# ])
+
+
+# new_prediction = model.predict(new_house)
+
+
+# print("\nNew house:")
+# print(new_house)
+
+# print("\nPredicted price:")
+# print(new_prediction)
+
+
+
+
+
+
+# import kagglehub
+
+# # Download latest version
+# path = kagglehub.dataset_download("yasserh/housing-prices-dataset")
+
+# print("Path to dataset files:", path)
