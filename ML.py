@@ -1249,3 +1249,159 @@
 # print("Log Loss:", loss)
 
 ################################################
+import numpy as np
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    r2_score
+)
+
+
+# ==========================================
+# 1. DATA
+# ==========================================
+
+# Hours studied
+X = np.array([
+    [1],
+    [2],
+    [3],
+    [4],
+    [5]
+])
+
+# Actual exam scores
+y = np.array([
+    13,
+    18,
+    25,
+    34,
+    45
+])
+
+
+# ==========================================
+# 2. CREATE POLYNOMIAL FEATURES
+# ==========================================
+
+# Degree 2 means:
+# X → X and X²
+
+poly = PolynomialFeatures(degree=2)
+
+X_poly = poly.fit_transform(X)
+
+
+print("Original X:")
+print(X)
+
+print("\nPolynomial X:")
+print(X_poly)
+
+
+# ==========================================
+# 3. CREATE LINEAR REGRESSION MODEL
+# ==========================================
+
+model = LinearRegression()
+
+
+# ==========================================
+# 4. TRAIN THE MODEL
+# ==========================================
+
+model.fit(X_poly, y)
+
+
+# ==========================================
+# 5. SHOW LEARNED PARAMETERS
+# ==========================================
+
+print("\nIntercept (b0):")
+print(model.intercept_)
+
+print("\nCoefficients:")
+print(model.coef_)
+
+
+# ==========================================
+# 6. PREDICT
+# ==========================================
+
+y_pred = model.predict(X_poly)
+
+
+print("\nActual values:")
+print(y)
+
+print("\nPredicted values:")
+print(y_pred)
+
+
+# ==========================================
+# 7. MAE
+# ==========================================
+
+mae = mean_absolute_error(y, y_pred)
+
+print("\nMAE:")
+print(mae)
+
+
+# ==========================================
+# 8. MSE
+# ==========================================
+
+mse = mean_squared_error(y, y_pred)
+
+print("\nMSE:")
+print(mse)
+
+
+# ==========================================
+# 9. RMSE
+# ==========================================
+
+rmse = np.sqrt(mse)
+
+print("\nRMSE:")
+print(rmse)
+
+
+# ==========================================
+# 10. R²
+# ==========================================
+
+r2 = r2_score(y, y_pred)
+
+print("\nR²:")
+print(r2)
+
+
+# ==========================================
+# 11. PREDICT A NEW VALUE
+# ==========================================
+
+new_X = np.array([[6]])
+
+# IMPORTANT:
+# New data must go through the same
+# polynomial transformation.
+
+new_X_poly = poly.transform(new_X)
+
+new_prediction = model.predict(new_X_poly)
+
+
+print("\nNew input:")
+print(new_X)
+
+print("\nNew polynomial features:")
+print(new_X_poly)
+
+print("\nPrediction for 6 hours:")
+print(new_prediction)
