@@ -548,3 +548,245 @@
 
 # print("Log Loss:", loss)
 ##############################################################
+import numpy as np
+
+# ==========================================
+# 1. DATA
+# ==========================================
+
+# Hours studied
+X = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], dtype=float)
+
+# Actual result
+# 0 = Fail
+# 1 = Pass
+
+y = np.array([
+    0, 0, 0, 1, 1,
+    1, 0, 1, 1, 1
+], dtype=float)
+
+
+# ==========================================
+# 2. INITIAL VALUES
+# ==========================================
+
+# Starting coefficient
+b1 = 0.0
+
+# Starting intercept
+b0 = 0.0
+
+# Learning rate
+learning_rate = 0.1
+
+# Number of times we train/update
+epochs = 10000
+
+
+# ==========================================
+# 3. SIGMOID FUNCTION
+# ==========================================
+
+def sigmoid(z):
+
+    return 1 / (1 + np.exp(-z))
+
+
+# ==========================================
+# 4. LOG LOSS FUNCTION
+# ==========================================
+
+def log_loss(y, p):
+
+    # Prevent log(0)
+    p = np.clip(p, 1e-15, 1 - 1e-15)
+
+    loss = -np.mean(
+        y * np.log(p) +
+        (1 - y) * np.log(1 - p)
+    )
+
+    return loss
+
+
+# ==========================================
+# 5. GRADIENT DESCENT
+# ==========================================
+
+for epoch in range(epochs):
+
+    # --------------------------------------
+    # STEP 1: Calculate z
+    # --------------------------------------
+
+    z = b0 + b1 * X
+
+
+    # --------------------------------------
+    # STEP 2: Convert z to probability
+    # --------------------------------------
+
+    p = sigmoid(z)
+
+
+    # --------------------------------------
+    # STEP 3: Calculate Log Loss
+    # --------------------------------------
+
+    loss = log_loss(y, p)
+
+
+    # --------------------------------------
+    # STEP 4: Calculate gradients
+    # --------------------------------------
+
+    db0 = np.mean(p - y)
+
+    db1 = np.mean((p - y) * X)
+
+
+    # --------------------------------------
+    # STEP 5: Update intercept
+    # --------------------------------------
+
+    b0 = b0 - learning_rate * db0
+
+
+    # --------------------------------------
+    # STEP 6: Update coefficient
+    # --------------------------------------
+
+    b1 = b1 - learning_rate * db1
+
+
+    # --------------------------------------
+    # Print progress
+    # --------------------------------------
+
+    if epoch % 1000 == 0:
+
+        print(
+            "Epoch:", epoch,
+            "Loss:", loss,
+            "b0:", b0,
+            "b1:", b1
+        )
+
+
+# ==========================================
+# 6. FINAL MODEL
+# ==========================================
+
+print("\nFINAL MODEL")
+
+print("Intercept (b0):", b0)
+
+print("Coefficient (b1):", b1)
+
+
+# ==========================================
+# 7. FINAL z
+# ==========================================
+
+z = b0 + b1 * X
+
+
+# ==========================================
+# 8. FINAL PROBABILITY
+# ==========================================
+
+p = sigmoid(z)
+
+print("\nProbabilities:")
+
+print(p)
+
+
+# ==========================================
+# 9. FINAL PREDICTION
+# ==========================================
+
+threshold = 0.5
+
+y_pred = (p >= threshold).astype(int)
+
+print("\nActual:")
+
+print(y.astype(int))
+
+print("\nPredicted:")
+
+print(y_pred)
+
+
+# ==========================================
+# 10. CONFUSION MATRIX MANUALLY
+# ==========================================
+
+TP = np.sum((y == 1) & (y_pred == 1))
+
+TN = np.sum((y == 0) & (y_pred == 0))
+
+FP = np.sum((y == 0) & (y_pred == 1))
+
+FN = np.sum((y == 1) & (y_pred == 0))
+
+
+print("\nConfusion Matrix Values")
+
+print("TP:", TP)
+
+print("TN:", TN)
+
+print("FP:", FP)
+
+print("FN:", FN)
+
+
+# ==========================================
+# 11. ACCURACY
+# ==========================================
+
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+
+# ==========================================
+# 12. PRECISION
+# ==========================================
+
+precision = TP / (TP + FP)
+
+
+# ==========================================
+# 13. RECALL
+# ==========================================
+
+recall = TP / (TP + FN)
+
+
+# ==========================================
+# 14. F1 SCORE
+# ==========================================
+
+f1 = 2 * (precision * recall) / (precision + recall)
+
+
+# ==========================================
+# 15. FINAL LOG LOSS
+# ==========================================
+
+final_loss = log_loss(y, p)
+
+
+print("\nFINAL METRICS")
+
+print("Accuracy:", accuracy)
+
+print("Precision:", precision)
+
+print("Recall:", recall)
+
+print("F1 Score:", f1)
+
+print("Log Loss:", final_loss)
