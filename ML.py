@@ -1736,98 +1736,98 @@
 
 #####################################################################
 
-import pandas as pd
+# import pandas as pd
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
-
-
-# ==========================================
-# 1. LOAD DATASET
-# ==========================================
-
-data = pd.read_csv(r"C:\Users\nn880\Downloads\Housing.csv")
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import r2_score
 
 
-# ==========================================
-# 2. DISPLAY DATA
-# ==========================================
+# # ==========================================
+# # 1. LOAD DATASET
+# # ==========================================
 
-print(data.head())
-
-print("\nColumns:")
-print(data.columns)
+# data = pd.read_csv(r"C:\Users\nn880\Downloads\Housing.csv")
 
 
-# ==========================================
-# 3. INPUT AND OUTPUT
-# ==========================================
+# # ==========================================
+# # 2. DISPLAY DATA
+# # ==========================================
 
-# Price is what we want to predict
-y = data["price"]
+# print(data.head())
 
-# Everything except price is input
-X = data.drop("price", axis=1)
-
-
-# ==========================================
-# 4. CONVERT CATEGORICAL DATA
-# ==========================================
-
-X = pd.get_dummies(X, drop_first=True)
+# print("\nColumns:")
+# print(data.columns)
 
 
-# ==========================================
-# 5. TRAIN / TEST SPLIT
-# ==========================================
+# # ==========================================
+# # 3. INPUT AND OUTPUT
+# # ==========================================
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42
-)
+# # Price is what we want to predict
+# y = data["price"]
 
-
-# ==========================================
-# 6. CREATE MODEL
-# ==========================================
-
-model = LinearRegression()
+# # Everything except price is input
+# X = data.drop("price", axis=1)
 
 
-# ==========================================
-# 7. TRAIN MODEL
-# ==========================================
+# # ==========================================
+# # 4. CONVERT CATEGORICAL DATA
+# # ==========================================
 
-model.fit(X_train, y_train)
-
-
-# ==========================================
-# 8. PREDICTION
-# ==========================================
-
-y_pred = model.predict(X_test)
+# X = pd.get_dummies(X, drop_first=True)
 
 
-# ==========================================
-# 9. DISPLAY ACTUAL AND PREDICTED
-# ==========================================
+# # ==========================================
+# # 5. TRAIN / TEST SPLIT
+# # ==========================================
 
-print("\nActual Prices:")
-print(y_test.values)
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X,
+#     y,
+#     test_size=0.2,
+#     random_state=42
+# )
 
-print("\nPredicted Prices:")
-print(y_pred)
+
+# # ==========================================
+# # 6. CREATE MODEL
+# # ==========================================
+
+# model = LinearRegression()
 
 
-# ==========================================
-# 10. R2 SCORE
-# ==========================================
+# # ==========================================
+# # 7. TRAIN MODEL
+# # ==========================================
 
-r2 = r2_score(y_test, y_pred)
+# model.fit(X_train, y_train)
 
-print("\nR2 Score:", r2)
 
-print("R2 Percentage:", r2 * 100, "%")
+# # ==========================================
+# # 8. PREDICTION
+# # ==========================================
+
+# y_pred = model.predict(X_test)
+
+
+# # ==========================================
+# # 9. DISPLAY ACTUAL AND PREDICTED
+# # ==========================================
+
+# print("\nActual Prices:")
+# print(y_test.values)
+
+# print("\nPredicted Prices:")
+# print(y_pred)
+
+
+# # ==========================================
+# # 10. R2 SCORE
+# # ==========================================
+
+# r2 = r2_score(y_test, y_pred)
+
+# print("\nR2 Score:", r2)
+
+# print("R2 Percentage:", r2 * 100, "%")
