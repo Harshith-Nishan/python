@@ -956,103 +956,103 @@
 
 # print("Log Loss:", loss)
 
-#####################################################
-import numpy as np
+# #####################################################
+# import numpy as np
 
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-
-
-# -----------------------------
-# DATA
-# -----------------------------
-
-X = np.array([
-    [1],
-    [2],
-    [3],
-    [4],
-    [5]
-])
-
-y = np.array([
-    13,
-    18,
-    25,
-    34,
-    45
-])
+# from sklearn.preprocessing import PolynomialFeatures
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
-# -----------------------------
-# CREATE POLYNOMIAL FEATURES
-# -----------------------------
+# # -----------------------------
+# # DATA
+# # -----------------------------
 
-poly = PolynomialFeatures(degree=2)
+# X = np.array([
+#     [1],
+#     [2],
+#     [3],
+#     [4],
+#     [5]
+# ])
 
-X_poly = poly.fit_transform(X)
-
-print("Original X:")
-print(X)
-
-print("\nPolynomial X:")
-print(X_poly)
-
-
-# -----------------------------
-# CREATE LINEAR REGRESSION
-# -----------------------------
-
-model = LinearRegression()
-
-
-# -----------------------------
-# TRAIN
-# -----------------------------
-
-model.fit(X_poly, y)
+# y = np.array([
+#     13,
+#     18,
+#     25,
+#     34,
+#     45
+# ])
 
 
-# -----------------------------
-# GET COEFFICIENTS
-# -----------------------------
+# # -----------------------------
+# # CREATE POLYNOMIAL FEATURES
+# # -----------------------------
 
-print("\nIntercept:", model.intercept_)
+# poly = PolynomialFeatures(degree=2)
 
-print("Coefficients:", model.coef_)
+# X_poly = poly.fit_transform(X)
 
+# print("Original X:")
+# print(X)
 
-# -----------------------------
-# PREDICTION#
-# -----------------------------
-
-y_pred = model.predict(X_poly)
-
-print("\nActual:")
-print(y)
-
-print("\nPredicted:")
-print(y_pred)
+# print("\nPolynomial X:")
+# print(X_poly)
 
 
-# -----------------------------
-# ERROR
-# -----------------------------
+# # -----------------------------
+# # CREATE LINEAR REGRESSION
+# # -----------------------------
 
-mae = mean_absolute_error(y, y_pred)
-
-mse = mean_squared_error(y, y_pred)
-
-rmse = np.sqrt(mse)
-
-r2 = r2_score(y, y_pred)
+# model = LinearRegression()
 
 
-print("\nMAE:", mae)
+# # -----------------------------
+# # TRAIN
+# # -----------------------------
 
-print("MSE:", mse)
+# model.fit(X_poly, y)
 
-print("RMSE:", rmse)
 
-print("R2:", r2)
+# # -----------------------------
+# # GET COEFFICIENTS
+# # -----------------------------
+
+# print("\nIntercept:", model.intercept_)
+
+# print("Coefficients:", model.coef_)
+
+
+# # -----------------------------
+# # PREDICTION#
+# # -----------------------------
+
+# y_pred = model.predict(X_poly)
+
+# print("\nActual:")
+# print(y)
+
+# print("\nPredicted:")
+# print(y_pred)
+
+
+# # -----------------------------
+# # ERROR
+# # -----------------------------
+
+# mae = mean_absolute_error(y, y_pred)
+
+# mse = mean_squared_error(y, y_pred)
+
+# rmse = np.sqrt(mse)
+
+# r2 = r2_score(y, y_pred)
+
+
+# print("\nMAE:", mae)
+
+# print("MSE:", mse)
+
+# print("RMSE:", rmse)
+
+# print("R2:", r2)
