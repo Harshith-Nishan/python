@@ -1941,11 +1941,235 @@
 
 
 
+# import pandas as pd
+
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import r2_score
+
+
+# # ==========================================
+# # 1. LOAD DATASET
+# # ==========================================
+
+# data = pd.read_csv(
+#     r"C:\Users\nn880\Downloads\dataset\Housing.csv"
+# )
+
+
+# # ==========================================
+# # 2. INPUT AND OUTPUT
+# # ==========================================
+
+# # Only ONE input
+# X = data[["area"]]
+
+# # Output
+# y = data["price"]
+
+
+# # ==========================================
+# # 3. TRAIN / TEST SPLIT
+# # ==========================================
+
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X,
+#     y,
+#     test_size=0.2,
+#     random_state=42
+# )
+
+
+# # ==========================================
+# # 4. CREATE MODEL
+# # ==========================================
+
+# model = LinearRegression()
+
+
+# # ==========================================
+# # 5. TRAIN MODEL
+# # ==========================================
+
+# model.fit(X_train, y_train)
+
+
+# # ==========================================
+# # 6. PREDICT
+# # ==========================================
+
+# y_pred = model.predict(X_test)
+
+
+# # ==========================================
+# # 7. DISPLAY RESULTS
+# # ==========================================
+
+# print("Actual Prices:")
+# print(y_test.values)
+
+# print("\nPredicted Prices:")
+# print(y_pred)
+
+
+# # ==========================================
+# # 8. COEFFICIENT AND INTERCEPT
+# # ==========================================
+
+# print("\nCoefficient (slope):")
+# print(model.coef_[0])
+
+# print("\nIntercept:")
+# print(model.intercept_)
+
+
+# # ==========================================
+# # 9. R²
+# # ==========================================
+
+# r2 = r2_score(y_test, y_pred)
+
+# print("\nR2 Score:", r2)
+
+# print("R2 Percentage:", r2 * 100, "%")
+#################################################################
+
+# import pandas as pd
+
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import (
+#     mean_absolute_error,
+#     mean_squared_error,
+#     r2_score
+# )
+
+# import numpy as np
+
+
+# # ==========================================
+# # 1. LOAD DATASET
+# # ==========================================
+
+# data = pd.read_csv(
+#     r"C:\Users\nn880\Downloads\dataset\Housing.csv"
+# )
+
+
+# # ==========================================
+# # 2. INPUT AND OUTPUT
+# # ==========================================
+
+# # Input
+# X = data[["area"]]
+
+# # Output
+# y = data["price"]
+
+
+# # ==========================================
+# # 3. SPLIT DATA
+# # ==========================================
+
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X,
+#     y,
+#     test_size=0.2,
+#     random_state=42
+# )
+
+
+# # ==========================================
+# # 4. CREATE MODEL
+# # ==========================================
+
+# model = LinearRegression()
+
+
+# # ==========================================
+# # 5. TRAIN MODEL
+# # ==========================================
+
+# model.fit(X_train, y_train)
+
+
+# # ==========================================
+# # 6. PREDICT TEST DATA
+# # ==========================================
+
+# y_pred = model.predict(X_test)
+
+
+# # ==========================================
+# # 7. ACTUAL VS PREDICTED
+# # ==========================================
+
+# print("Actual Prices:")
+# print(y_test.values)
+
+# print("\nPredicted Prices:")
+# print(y_pred)
+
+
+# # ==========================================
+# # 8. COEFFICIENT AND INTERCEPT
+# # ==========================================
+
+# print("\nCoefficient (b1):")
+# print(model.coef_[0])
+
+# print("\nIntercept (b0):")
+# print(model.intercept_)
+
+
+# # ==========================================
+# # 9. ERROR METRICS
+# # ==========================================
+
+# mae = mean_absolute_error(y_test, y_pred)
+
+# mse = mean_squared_error(y_test, y_pred)
+
+# rmse = np.sqrt(mse)
+
+# r2 = r2_score(y_test, y_pred)
+
+
+# print("\nMAE:", mae)
+
+# print("MSE:", mse)
+
+# print("RMSE:", rmse)
+
+# print("R2 Score:", r2)
+
+# print("R2 Percentage:", r2 * 100, "%")
+
+
+# # ==========================================
+# # 10. GIVE YOUR OWN AREA
+# # ==========================================
+
+# area = float(input("\nEnter house area: "))
+
+# new_house = [[area]]
+
+# prediction = model.predict(new_house)
+
+# print("\nPredicted House Price:", prediction[0])
+
+###########################################
 import pandas as pd
+import numpy as np
 
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    r2_score
+)
 
 
 # ==========================================
@@ -1961,10 +2185,8 @@ data = pd.read_csv(
 # 2. INPUT AND OUTPUT
 # ==========================================
 
-# Only ONE input
 X = data[["area"]]
 
-# Output
 y = data["price"]
 
 
@@ -1981,28 +2203,42 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 # ==========================================
-# 4. CREATE MODEL
+# 4. CREATE POLYNOMIAL FEATURES
+# ==========================================
+
+poly = PolynomialFeatures(
+    degree=2,
+    include_bias=False
+)
+
+X_train_poly = poly.fit_transform(X_train)
+
+X_test_poly = poly.transform(X_test)
+
+
+# ==========================================
+# 5. CREATE MODEL
 # ==========================================
 
 model = LinearRegression()
 
 
 # ==========================================
-# 5. TRAIN MODEL
+# 6. TRAIN
 # ==========================================
 
-model.fit(X_train, y_train)
-
-
-# ==========================================
-# 6. PREDICT
-# ==========================================
-
-y_pred = model.predict(X_test)
+model.fit(X_train_poly, y_train)
 
 
 # ==========================================
-# 7. DISPLAY RESULTS
+# 7. PREDICT
+# ==========================================
+
+y_pred = model.predict(X_test_poly)
+
+
+# ==========================================
+# 8. ACTUAL VS PREDICTED
 # ==========================================
 
 print("Actual Prices:")
@@ -2013,22 +2249,50 @@ print(y_pred)
 
 
 # ==========================================
-# 8. COEFFICIENT AND INTERCEPT
+# 9. MODEL PARAMETERS
 # ==========================================
 
-print("\nCoefficient (slope):")
-print(model.coef_[0])
-
-print("\nIntercept:")
+print("\nIntercept (b0):")
 print(model.intercept_)
 
+print("\nCoefficients:")
+print(model.coef_)
+
 
 # ==========================================
-# 9. R²
+# 10. METRICS
 # ==========================================
+
+mae = mean_absolute_error(y_test, y_pred)
+
+mse = mean_squared_error(y_test, y_pred)
+
+rmse = np.sqrt(mse)
 
 r2 = r2_score(y_test, y_pred)
 
-print("\nR2 Score:", r2)
+
+print("\nMAE:", mae)
+
+print("MSE:", mse)
+
+print("RMSE:", rmse)
+
+print("R2 Score:", r2)
 
 print("R2 Percentage:", r2 * 100, "%")
+
+
+# ==========================================
+# 11. YOUR OWN AREA
+# ==========================================
+
+area = float(input("\nEnter house area: "))
+
+new_house = np.array([[area]])
+
+new_house_poly = poly.transform(new_house)
+
+prediction = model.predict(new_house_poly)
+
+print("\nPredicted House Price:", prediction[0])
