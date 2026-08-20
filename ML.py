@@ -1583,15 +1583,8 @@
 
 
 
-# import kagglehub
 
-# # Download latest version
-# path = kagglehub.dataset_download("yasserh/housing-prices-dataset")
-
-# print("Path to dataset files:", path)
-
-#####################################################################
-
+###########################################################
 # import pandas as pd
 
 # from sklearn.model_selection import train_test_split
@@ -1600,42 +1593,30 @@
 
 
 # # ==========================================
-# # 1. LOAD DATASET
+# # 1. LOAD DATA
 # # ==========================================
 
 # data = pd.read_csv(r"C:\Users\nn880\Downloads\Housing.csv")
 
 
 # # ==========================================
-# # 2. DISPLAY DATA
+# # 2. SEPARATE INPUT AND OUTPUT
 # # ==========================================
 
-# print(data.head())
-
-# print("\nColumns:")
-# print(data.columns)
-
-
-# # ==========================================
-# # 3. INPUT AND OUTPUT
-# # ==========================================
-
-# # Price is what we want to predict
 # y = data["price"]
 
-# # Everything except price is input
 # X = data.drop("price", axis=1)
 
 
 # # ==========================================
-# # 4. CONVERT CATEGORICAL DATA
+# # 3. CONVERT TEXT COLUMNS TO NUMBERS
 # # ==========================================
 
 # X = pd.get_dummies(X, drop_first=True)
 
 
 # # ==========================================
-# # 5. TRAIN / TEST SPLIT
+# # 4. TRAIN / TEST SPLIT
 # # ==========================================
 
 # X_train, X_test, y_train, y_test = train_test_split(
@@ -1647,43 +1628,206 @@
 
 
 # # ==========================================
-# # 6. CREATE MODEL
+# # 5. CREATE MODEL
 # # ==========================================
 
 # model = LinearRegression()
 
 
 # # ==========================================
-# # 7. TRAIN MODEL
+# # 6. TRAIN
 # # ==========================================
 
 # model.fit(X_train, y_train)
 
 
 # # ==========================================
-# # 8. PREDICTION
+# # 7. TEST MODEL
 # # ==========================================
 
 # y_pred = model.predict(X_test)
 
-
-# # ==========================================
-# # 9. DISPLAY ACTUAL AND PREDICTED
-# # ==========================================
-
-# print("\nActual Prices:")
-# print(y_test.values)
-
-# print("\nPredicted Prices:")
-# print(y_pred)
-
-
-# # ==========================================
-# # 10. R2 SCORE
-# # ==========================================
-
 # r2 = r2_score(y_test, y_pred)
 
-# print("\nR2 Score:", r2)
-
+# print("R2 Score:", r2)
 # print("R2 Percentage:", r2 * 100, "%")
+
+
+# # ==========================================
+# # 8. ENTER YOUR OWN HOUSE
+# # ==========================================
+
+# area = float(input("\nEnter area: "))
+# bedrooms = int(input("Enter bedrooms: "))
+# bathrooms = int(input("Enter bathrooms: "))
+# stories = int(input("Enter stories: "))
+
+# mainroad = input("Mainroad (yes/no): ")
+# guestroom = input("Guestroom (yes/no): ")
+# basement = input("Basement (yes/no): ")
+# hotwaterheating = input("Hot water heating (yes/no): ")
+# airconditioning = input("Air conditioning (yes/no): ")
+
+# parking = int(input("Parking spaces: "))
+# prefarea = input("Preferred area (yes/no): ")
+# furnishingstatus = input(
+#     "Furnishing status (furnished/semi-furnished/unfurnished): "
+# )
+
+
+# # ==========================================
+# # 9. CREATE NEW HOUSE DATA
+# # ==========================================
+
+# new_house = pd.DataFrame([{
+#     "area": area,
+#     "bedrooms": bedrooms,
+#     "bathrooms": bathrooms,
+#     "stories": stories,
+#     "mainroad": mainroad,
+#     "guestroom": guestroom,
+#     "basement": basement,
+#     "hotwaterheating": hotwaterheating,
+#     "airconditioning": airconditioning,
+#     "parking": parking,
+#     "prefarea": prefarea,
+#     "furnishingstatus": furnishingstatus
+# }])
+
+
+# # ==========================================
+# # 10. CONVERT NEW HOUSE
+# # ==========================================
+
+# new_house = pd.get_dummies(new_house, drop_first=True)
+
+# # Make sure new data has exactly the same columns
+# new_house = new_house.reindex(
+#     columns=X.columns,
+#     fill_value=0
+# )
+
+
+# # ==========================================
+# # 11. PREDICT PRICE
+# # ==========================================
+
+# prediction = model.predict(new_house)
+
+
+# print("\n==============================")
+# print("Predicted House Price:")
+# print(prediction[0])
+# print("==============================")
+
+
+
+
+
+
+
+
+# import kagglehub
+
+# # Download latest version
+# path = kagglehub.dataset_download("yasserh/housing-prices-dataset")
+
+# print("Path to dataset files:", path)
+
+#####################################################################
+
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+
+
+# ==========================================
+# 1. LOAD DATASET
+# ==========================================
+
+data = pd.read_csv(r"C:\Users\nn880\Downloads\Housing.csv")
+
+
+# ==========================================
+# 2. DISPLAY DATA
+# ==========================================
+
+print(data.head())
+
+print("\nColumns:")
+print(data.columns)
+
+
+# ==========================================
+# 3. INPUT AND OUTPUT
+# ==========================================
+
+# Price is what we want to predict
+y = data["price"]
+
+# Everything except price is input
+X = data.drop("price", axis=1)
+
+
+# ==========================================
+# 4. CONVERT CATEGORICAL DATA
+# ==========================================
+
+X = pd.get_dummies(X, drop_first=True)
+
+
+# ==========================================
+# 5. TRAIN / TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+
+# ==========================================
+# 6. CREATE MODEL
+# ==========================================
+
+model = LinearRegression()
+
+
+# ==========================================
+# 7. TRAIN MODEL
+# ==========================================
+
+model.fit(X_train, y_train)
+
+
+# ==========================================
+# 8. PREDICTION
+# ==========================================
+
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# 9. DISPLAY ACTUAL AND PREDICTED
+# ==========================================
+
+print("\nActual Prices:")
+print(y_test.values)
+
+print("\nPredicted Prices:")
+print(y_pred)
+
+
+# ==========================================
+# 10. R2 SCORE
+# ==========================================
+
+r2 = r2_score(y_test, y_pred)
+
+print("\nR2 Score:", r2)
+
+print("R2 Percentage:", r2 * 100, "%")
