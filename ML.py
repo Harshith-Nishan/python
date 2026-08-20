@@ -1937,13 +1937,13 @@
 # print("\nPredicted Prices:")
 # print(y_pred)
 
+###############################################
+
 
 
 import pandas as pd
-import numpy as np
 
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 
@@ -1961,22 +1961,15 @@ data = pd.read_csv(
 # 2. INPUT AND OUTPUT
 # ==========================================
 
+# Only ONE input
+X = data[["area"]]
+
 # Output
 y = data["price"]
 
-# Inputs
-X = data.drop("price", axis=1)
-
 
 # ==========================================
-# 3. CONVERT CATEGORICAL DATA
-# ==========================================
-
-X = pd.get_dummies(X, drop_first=True)
-
-
-# ==========================================
-# 4. TRAIN / TEST SPLIT
+# 3. TRAIN / TEST SPLIT
 # ==========================================
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -1988,45 +1981,31 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 # ==========================================
-# 5. POLYNOMIAL FEATURES
-# ==========================================
-
-poly = PolynomialFeatures(
-    degree=2,
-    include_bias=False
-)
-
-X_train_poly = poly.fit_transform(X_train)
-
-X_test_poly = poly.transform(X_test)
-
-
-# ==========================================
-# 6. CREATE MODEL
+# 4. CREATE MODEL
 # ==========================================
 
 model = LinearRegression()
 
 
 # ==========================================
-# 7. TRAIN MODEL
+# 5. TRAIN MODEL
 # ==========================================
 
-model.fit(X_train_poly, y_train)
-
-
-# ==========================================
-# 8. PREDICTION
-# ==========================================
-
-y_pred = model.predict(X_test_poly)
+model.fit(X_train, y_train)
 
 
 # ==========================================
-# 9. DISPLAY ACTUAL & PREDICTED
+# 6. PREDICT
 # ==========================================
 
-print("\nActual Prices:")
+y_pred = model.predict(X_test)
+
+
+# ==========================================
+# 7. DISPLAY RESULTS
+# ==========================================
+
+print("Actual Prices:")
 print(y_test.values)
 
 print("\nPredicted Prices:")
@@ -2034,7 +2013,18 @@ print(y_pred)
 
 
 # ==========================================
-# 10. R² SCORE
+# 8. COEFFICIENT AND INTERCEPT
+# ==========================================
+
+print("\nCoefficient (slope):")
+print(model.coef_[0])
+
+print("\nIntercept:")
+print(model.intercept_)
+
+
+# ==========================================
+# 9. R²
 # ==========================================
 
 r2 = r2_score(y_test, y_pred)
