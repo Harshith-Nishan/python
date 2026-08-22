@@ -2299,12 +2299,124 @@
 
 ################################################################
 
+# import pandas as pd
+# import numpy as np
+
+# from sklearn.model_selection import train_test_split
+# from sklearn.preprocessing import StandardScaler
+# from sklearn.linear_model import Ridge
+# from sklearn.metrics import (
+#     mean_absolute_error,
+#     mean_squared_error,
+#     r2_score
+# )
+
+
+# # ==========================================
+# # 1. LOAD DATA
+# # ==========================================
+
+# data = pd.read_csv(
+#     r"C:\Users\nn880\Downloads\dataset\Housing.csv"
+# )
+
+
+# # ==========================================
+# # 2. INPUT AND OUTPUT
+# # ==========================================
+
+# X = data[["area"]]
+
+# y = data["price"]
+
+
+# # ==========================================
+# # 3. TRAIN / TEST SPLIT
+# # ==========================================
+
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X,
+#     y,
+#     test_size=0.2,
+#     random_state=42
+# )
+
+
+# # ==========================================
+# # 4. STANDARDIZATION
+# # ==========================================
+
+# scaler = StandardScaler()
+
+# X_train_scaled = scaler.fit_transform(X_train)
+
+# X_test_scaled = scaler.transform(X_test)
+
+
+# # ==========================================
+# # 5. RIDGE REGRESSION
+# # ==========================================
+
+# model = Ridge(alpha=0.01)
+
+# model.fit(X_train_scaled, y_train)
+
+
+# # ==========================================
+# # 6. PREDICTION
+# # ==========================================
+
+# y_pred = model.predict(X_test_scaled)
+
+
+# # ==========================================
+# # 7. DISPLAY RESULTS
+# # ==========================================
+
+# print("Actual Prices:")
+# print(y_test.values)
+
+# print("\nPredicted Prices:")
+# print(y_pred)
+
+
+# # ==========================================
+# # 8. COEFFICIENT & INTERCEPT
+# # ==========================================
+
+# print("\nCoefficient:")
+# print(model.coef_[0])
+
+# print("\nIntercept:")
+# print(model.intercept_)
+
+
+# # ==========================================
+# # 9. METRICS
+# # ==========================================
+
+# mae = mean_absolute_error(y_test, y_pred)
+
+# mse = mean_squared_error(y_test, y_pred)
+
+# rmse = np.sqrt(mse)
+
+# r2 = r2_score(y_test, y_pred)
+
+
+# print("\nMAE:", mae)
+# print("MSE:", mse)
+# print("RMSE:", rmse)
+# print("R2 Score:", r2)
+# print("R2 Percentage:", r2 * 100, "%")
+
+########################################################
 import pandas as pd
 import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import Ridge
+from sklearn.linear_model import Lasso
 from sklearn.metrics import (
     mean_absolute_error,
     mean_squared_error,
@@ -2354,10 +2466,10 @@ X_test_scaled = scaler.transform(X_test)
 
 
 # ==========================================
-# 5. RIDGE REGRESSION
+# 5. LASSO REGRESSION
 # ==========================================
 
-model = Ridge(alpha=0.01)
+model = Lasso(alpha=1.0)
 
 model.fit(X_train_scaled, y_train)
 
@@ -2370,7 +2482,7 @@ y_pred = model.predict(X_test_scaled)
 
 
 # ==========================================
-# 7. DISPLAY RESULTS
+# 7. ACTUAL VS PREDICTED
 # ==========================================
 
 print("Actual Prices:")
@@ -2392,7 +2504,7 @@ print(model.intercept_)
 
 
 # ==========================================
-# 9. METRICS
+# 9. ERROR METRICS
 # ==========================================
 
 mae = mean_absolute_error(y_test, y_pred)
